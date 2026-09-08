@@ -3102,7 +3102,7 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
   __name: "VPNavBarSearch",
   __ssrInlineRender: true,
   setup(__props) {
-    const VPLocalSearchBox = defineAsyncComponent(() => import("./VPLocalSearchBox.CbsOhwQk.js"));
+    const VPLocalSearchBox = defineAsyncComponent(() => import("./VPLocalSearchBox.B-2HAM7r.js"));
     const VPAlgoliaSearchBox = () => null;
     const { theme: theme2 } = useData();
     const loaded = ref(false);
@@ -4838,6 +4838,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const { isDark } = useData$1();
     const route = useRoute();
     const giscusEl = ref(null);
+    const isHome = computed(() => route.path === "/" || route.path === "/index.html");
     const enabled = computed(
       () => false
     );
@@ -4851,8 +4852,13 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         "https://giscus.app"
       );
     }
+    function clearGiscus() {
+      scriptEl == null ? void 0 : scriptEl.remove();
+      scriptEl = null;
+      if (giscusEl.value) giscusEl.value.innerHTML = "";
+    }
     async function mountGiscus() {
-      if (!enabled.value || !giscusEl.value) return;
+      if (isHome.value || !enabled.value || !giscusEl.value) return;
       await nextTick();
       if (scriptEl) {
         scriptEl.remove();
@@ -4885,24 +4891,28 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     watch(
       () => route.path,
       () => {
-        mountGiscus();
+        if (isHome.value) clearGiscus();
+        else mountGiscus();
       }
     );
     watch(isDark, () => {
       postTheme(themeName());
     });
     onBeforeUnmount(() => {
-      scriptEl == null ? void 0 : scriptEl.remove();
-      scriptEl = null;
+      clearGiscus();
     });
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<section${ssrRenderAttrs(mergeProps({ class: "giscus-wrap" }, _attrs))} data-v-f4d8bc5d>`);
-      if (!enabled.value) {
-        _push(`<div class="giscus-setup" data-v-f4d8bc5d><strong data-v-f4d8bc5d>留言功能尚未配置</strong><p data-v-f4d8bc5d>请在 GitHub 仓库开启 Discussions，安装 Giscus App，并配置仓库 ID 与分类 ID。</p><a href="https://giscus.app/zh-CN" target="_blank" rel="noreferrer" data-v-f4d8bc5d>打开 Giscus 配置页</a></div>`);
+      if (!isHome.value) {
+        _push(`<section${ssrRenderAttrs(mergeProps({ class: "giscus-wrap" }, _attrs))} data-v-17178daa>`);
+        if (!enabled.value) {
+          _push(`<div class="giscus-setup" data-v-17178daa><strong data-v-17178daa>留言功能尚未配置</strong><p data-v-17178daa>请在 GitHub 仓库开启 Discussions，安装 Giscus App，并配置仓库 ID 与分类 ID。</p><a href="https://giscus.app/zh-CN" target="_blank" rel="noreferrer" data-v-17178daa>打开 Giscus 配置页</a></div>`);
+        } else {
+          _push(`<!---->`);
+        }
+        _push(`<div class="giscus" data-v-17178daa></div></section>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<div class="giscus" data-v-f4d8bc5d></div></section>`);
     };
   }
 });
@@ -4912,7 +4922,7 @@ _sfc_main.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(".vitepress/theme/components/GiscusComments.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const GiscusComments = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-f4d8bc5d"]]);
+const GiscusComments = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-17178daa"]]);
 const RawTheme = {
   extends: theme,
   Layout() {

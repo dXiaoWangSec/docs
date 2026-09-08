@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: '知识库',
   description: '知识库，面向安全、AI、工具与笔记的个人站点',
-  // The site is served from the root of the custom domain on GitHub Pages.
+  
   base: '/',
   cleanUrls: true,
   themeConfig: {

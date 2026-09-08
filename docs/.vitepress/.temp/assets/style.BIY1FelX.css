@@ -4847,10 +4847,10 @@ html:not(.dark) .VPImage.dark[data-v-8426fc1a] {
 }
 }
 
-.giscus-wrap[data-v-f4d8bc5d] {
+.giscus-wrap[data-v-17178daa] {
   margin-top: 2rem;
 }
-.giscus-setup[data-v-f4d8bc5d] {
+.giscus-setup[data-v-17178daa] {
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
   padding: 1rem 1.25rem;
@@ -4858,13 +4858,13 @@ html:not(.dark) .VPImage.dark[data-v-8426fc1a] {
   background: var(--vp-c-bg-soft);
   font-size: 0.9rem;
 }
-.giscus-setup strong[data-v-f4d8bc5d] {
+.giscus-setup strong[data-v-17178daa] {
   color: var(--vp-c-text-1);
 }
-.giscus-setup p[data-v-f4d8bc5d] {
+.giscus-setup p[data-v-17178daa] {
   margin: 0.45rem 0 0.65rem;
 }
-.giscus-setup a[data-v-f4d8bc5d] {
+.giscus-setup a[data-v-17178daa] {
   color: var(--vp-c-brand-1);
 }
 :root {

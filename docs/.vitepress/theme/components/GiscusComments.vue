@@ -1,5 +1,5 @@
 <template>
-  <section class="giscus-wrap">
+  <section v-if="!isHome" class="giscus-wrap">
     <div v-if="!enabled" class="giscus-setup">
       <strong>留言功能尚未配置</strong>
       <p>请在 GitHub 仓库开启 Discussions，安装 Giscus App，并配置仓库 ID 与分类 ID。</p>
@@ -16,6 +16,7 @@ import { useData, useRoute } from 'vitepress'
 const { isDark } = useData()
 const route = useRoute()
 const giscusEl = ref<HTMLDivElement | null>(null)
+const isHome = computed(() => route.path === '/' || route.path === '/index.html')
 const enabled = computed(
   () =>
     !!import.meta.env.VITE_GISCUS_REPO &&
@@ -36,8 +37,14 @@ function postTheme(theme: string) {
   )
 }
 
+function clearGiscus() {
+  scriptEl?.remove()
+  scriptEl = null
+  if (giscusEl.value) giscusEl.value.innerHTML = ''
+}
+
 async function mountGiscus() {
-  if (!enabled.value || !giscusEl.value) return
+  if (isHome.value || !enabled.value || !giscusEl.value) return
 
   await nextTick()
 
@@ -77,7 +84,8 @@ onMounted(mountGiscus)
 watch(
   () => route.path,
   () => {
-    mountGiscus()
+    if (isHome.value) clearGiscus()
+    else mountGiscus()
   }
 )
 
@@ -86,20 +94,24 @@ watch(isDark, () => {
 })
 
 onBeforeUnmount(() => {
-  scriptEl?.remove()
-  scriptEl = null
+  clearGiscus()
 })
 </script>
 
 <style scoped>
 .giscus-wrap {
-  margin-top: 2rem;
+  --giscus-max-width: 860px;
+  margin: 2.5rem auto 0;
+  padding: 0 1rem;
+  max-width: calc(var(--giscus-max-width) + 2rem);
 }
 
 .giscus-setup {
+  max-width: var(--giscus-max-width);
+  margin: 0 auto;
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
-  padding: 1rem 1.25rem;
+  padding: 1rem 1.1rem;
   color: var(--vp-c-text-2);
   background: var(--vp-c-bg-soft);
   font-size: 0.9rem;
@@ -115,5 +127,16 @@ onBeforeUnmount(() => {
 
 .giscus-setup a {
   color: var(--vp-c-brand-1);
+}
+
+.giscus {
+  width: 100%;
+  max-width: var(--giscus-max-width);
+  margin: 0 auto;
+}
+
+.giscus :deep(iframe) {
+  display: block;
+  width: 100%;
 }
 </style>
