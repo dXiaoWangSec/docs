@@ -25,5 +25,5 @@ npm run build
 
 1. 在 `dXiaoWangSec/docs` 的 GitHub 仓库 Settings > General 中开启 Discussions。
 2. 安装 [Giscus App](https://github.com/apps/giscus)，并在 [giscus.app](https://giscus.app/zh-CN) 选择本仓库和 `General` 分类。
-3. 本地开发时，将 `.env.example` 复制为 `.env.local`，填入 Giscus 页面生成的 `VITE_GISCUS_REPO_ID` 和 `VITE_GISCUS_CATEGORY_ID`，然后重启开发服务器。
-4. GitHub Pages 部署时，在仓库 Settings > Secrets and variables > Actions 中新增两个 Repository secrets：`VITE_GISCUS_REPO_ID` 和 `VITE_GISCUS_CATEGORY_ID`。工作流会自动注入它们。
+3. 当前项目已经配置了 `dXiaoWangSec/docs` 的 Repository ID 和 `General` 分类 ID，本地开发可直接运行；修改配置后需要重启开发服务器。
+4. GitHub Pages 工作流已内置这两个公开标识作为默认值，也支持使用 Repository secrets 覆盖：`VITE_GISCUS_REPO_ID` 和 `VITE_GISCUS_CATEGORY_ID`。

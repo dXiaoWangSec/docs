@@ -38,9 +38,9 @@ jobs:
       - name: Build site
         env:
           VITE_GISCUS_REPO: ${{ vars.VITE_GISCUS_REPO || 'dXiaoWangSec/docs' }}
-          VITE_GISCUS_REPO_ID: ${{ secrets.VITE_GISCUS_REPO_ID }}
+          VITE_GISCUS_REPO_ID: ${{ secrets.VITE_GISCUS_REPO_ID || 'R_kgDOUSh3YA' }}
           VITE_GISCUS_CATEGORY: ${{ vars.VITE_GISCUS_CATEGORY || 'General' }}
-          VITE_GISCUS_CATEGORY_ID: ${{ secrets.VITE_GISCUS_CATEGORY_ID }}
+          VITE_GISCUS_CATEGORY_ID: ${{ secrets.VITE_GISCUS_CATEGORY_ID || 'DIC_kwDOUSh3YM4DFKYJ' }}
           VITE_GISCUS_MAPPING: pathname
           VITE_GISCUS_STRICT: 0
           VITE_GISCUS_REACTIONS_ENABLED: 1
