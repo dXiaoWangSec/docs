@@ -1,3 +1,9 @@
 .*.swp
 recognize
 .DS_Store
+node_modules
+docs/.vitepress/dist
+docs/.vitepress/cache
+*.log
+.env.local
+.env.*.local
