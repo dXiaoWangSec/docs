@@ -1,15 +1,15 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: '矛·盾知识库',
-  description: '矛·盾知识库，面向安全、AI、工具与笔记的个人站点',
+  title: '知识库',
+  description: '知识库，面向安全、AI、工具与笔记的个人站点',
   // The site is served from the root of the custom domain on GitHub Pages.
   base: '/',
   cleanUrls: true,
   themeConfig: {
     logo: '/logo.svg',
     nav: [
-      { text: '矛盾武器库', link: '/weapon/' },
+      { text: '知识库武器库', link: '/weapon/' },
       { text: '安全导航', link: '/navigation/' },
       { text: 'AI工具箱', link: '/ai-toolbox/' },
       { text: '近期资讯', link: '/news/' },
@@ -35,11 +35,11 @@ export default defineConfig({
     search: {
       provider: 'local'
     },
-    socialLinks: [{ icon: 'github', link: 'https://github.com/' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/dXiaoWangSec/docs' }],
     sidebar: {
       '/weapon/': [
         {
-          text: '矛盾武器库',
+          text: '知识库武器库',
           items: [{ text: '总览', link: '/weapon/' }]
         }
       ],

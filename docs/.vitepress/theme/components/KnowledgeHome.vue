@@ -3,9 +3,9 @@
     <section class="home-hero">
       <div class="home-topbar">
         <div class="home-brand">
-          <div class="home-brand-mark">矛</div>
+          <div class="home-brand-mark">知</div>
           <div class="home-brand-text">
-            <div class="home-brand-title">矛·盾 知识库</div>
+            <div class="home-brand-title">知识库</div>
             <div class="home-brand-subtitle">安全、AI、工具、笔记，一处归档</div>
           </div>
         </div>
@@ -19,7 +19,7 @@
 
         <div class="home-links">
           <a class="home-link active" href="/docs/">首页</a>
-          <a class="home-link" href="/docs/weapon/">矛盾武器库</a>
+          <a class="home-link" href="/weapon/">知识库武器库</a>
           <a class="home-link" href="/docs/navigation/">安全导航</a>
           <a class="home-link" href="/docs/ai-toolbox/">AI工具箱</a>
           <a class="home-link" href="/docs/news/">近期资讯</a>
@@ -29,7 +29,7 @@
 
       <div class="home-quickgrid">
         <a class="home-card" href="/docs/weapon/">
-          <h3>矛盾武器库</h3>
+          <h3>知识库武器库</h3>
           <p>整理实战方法、常用思路和攻防资料。</p>
         </a>
         <a class="home-card" href="/docs/navigation/">

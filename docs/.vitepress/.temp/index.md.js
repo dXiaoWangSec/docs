@@ -1,7 +1,7 @@
 import { resolveComponent, useSSRContext } from "vue";
 import { ssrRenderAttrs, ssrRenderComponent } from "vue/server-renderer";
 import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
-const __pageData = JSON.parse('{"title":"矛·盾知识库","description":"","frontmatter":{"layout":"page","title":"矛·盾知识库"},"headers":[],"relativePath":"index.md","filePath":"index.md"}');
+const __pageData = JSON.parse('{"title":"知识库","description":"","frontmatter":{"layout":"page","title":"知识库"},"headers":[],"relativePath":"index.md","filePath":"index.md"}');
 const _sfc_main = { name: "index.md" };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_KnowledgeHome = resolveComponent("KnowledgeHome");
