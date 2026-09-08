@@ -3,7 +3,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: '矛·盾知识库',
   description: '矛·盾知识库，面向安全、AI、工具与笔记的个人站点',
-  base: '/docs/',
+  // The site is served from the root of the custom domain on GitHub Pages.
+  base: '/',
   cleanUrls: true,
   themeConfig: {
     logo: '/logo.svg',
