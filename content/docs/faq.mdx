@@ -1,0 +1,40 @@
+---
+title: 常见问题
+description: 高频疑问速查
+---
+
+点击任意问题展开答案。
+
+<details>
+  <summary>新页面写好了，为什么侧边栏看不到？</summary>
+
+必须把它加到所在目录 `meta.json` 的 `pages` 数组里。Fumadocs 不会自动收录文件。
+</details>
+
+<details>
+  <summary>怎么改站点名字和 logo？</summary>
+
+改 `lib/layout.shared.ts` 里的 `nav.title`，并在 `app/layout.tsx` 的 `nav` 配置里加 `icon`。
+</details>
+
+<details>
+  <summary>支持暗色模式吗？</summary>
+
+原生支持，右上角即可切换，默认跟随系统。
+</details>
+
+<details>
+  <summary>搜索是联网的吗？</summary>
+
+不是。搜索索引在构建时生成，纯前端全文检索，无后端依赖。
+</details>
+
+<details>
+  <summary>能部署到哪些平台？</summary>
+
+本站使用 Next.js 静态导出（`output: export`），构建产物是纯静态文件，可托管到 GitHub Pages、Cloudflare Pages、Netlify 等任意静态托管，也支持 Vercel 等 Node 平台。
+</details>
+
+<Callout type="info" title="还有问题？">
+没覆盖到的，直接问搭建的人即可。
+</Callout>
