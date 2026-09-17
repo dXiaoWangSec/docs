@@ -1,5 +1,5 @@
-# Build and deploy the VitePress site to GitHub Pages
-name: Deploy VitePress site
+# Build and deploy the Fumadocs (Next.js static export) site to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: npm
 
       - name: Install dependencies
@@ -35,25 +35,13 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Build site
-        env:
-          VITE_GISCUS_REPO: ${{ vars.VITE_GISCUS_REPO || 'dXiaoWangSec/docs' }}
-          VITE_GISCUS_REPO_ID: ${{ secrets.VITE_GISCUS_REPO_ID || 'R_kgDOUSh3YA' }}
-          VITE_GISCUS_CATEGORY: ${{ vars.VITE_GISCUS_CATEGORY || 'General' }}
-          VITE_GISCUS_CATEGORY_ID: ${{ secrets.VITE_GISCUS_CATEGORY_ID || 'DIC_kwDOUSh3YM4DFKYJ' }}
-          VITE_GISCUS_MAPPING: pathname
-          VITE_GISCUS_STRICT: 0
-          VITE_GISCUS_REACTIONS_ENABLED: 1
-          VITE_GISCUS_EMIT_METADATA: 0
-          VITE_GISCUS_INPUT_POSITION: bottom
-          VITE_GISCUS_LANG: zh-CN
-          VITE_GISCUS_LOADING: lazy
+      - name: Build site (static export to out/)
         run: npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: out
 
   deploy:
     name: Deploy site
@@ -65,4 +53,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4
