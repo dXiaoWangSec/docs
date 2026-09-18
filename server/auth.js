@@ -4,6 +4,7 @@ import argon2 from '@node-rs/argon2';
 import crypto from 'node:crypto';
 import db from './db.js';
 import { COOKIE_NAME, SESSION_TTL_DAYS } from './config.js';
+import { createCaptcha, verifyCaptcha } from './captcha.js';
 
 const router = Router();
 
@@ -50,9 +51,17 @@ function createSession(userId, req) {
   return token;
 }
 
+// 发验证码：返回 { id, svg }，svg 为像素风验证码图片
+router.get('/captcha', (req, res) => {
+  return res.json(createCaptcha());
+});
+
 // 注册（最简：无邮箱验证、无管理员）
 router.post('/register', authLimiter, async (req, res) => {
-  const { email, password } = req.body || {};
+  const { email, password, captchaId, captchaText } = req.body || {};
+  if (!verifyCaptcha(captchaId, captchaText)) {
+    return res.status(400).json({ error: '验证码错误或已过期' });
+  }
   if (!email || !EMAIL_RE.test(String(email))) {
     return res.status(400).json({ error: '邮箱格式不正确' });
   }
@@ -74,7 +83,10 @@ router.post('/register', authLimiter, async (req, res) => {
 
 // 登录
 router.post('/login', authLimiter, async (req, res) => {
-  const { email, password } = req.body || {};
+  const { email, password, captchaId, captchaText } = req.body || {};
+  if (!verifyCaptcha(captchaId, captchaText)) {
+    return res.status(400).json({ error: '验证码错误或已过期' });
+  }
   const emailNorm = String(email || '').toLowerCase().trim();
   const user = db.prepare('SELECT * FROM users WHERE email = ?').get(emailNorm);
 
