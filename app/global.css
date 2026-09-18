@@ -11,6 +11,17 @@
   }
 }
 
+/* 修复 CSS 分包顺序问题：Next.js 把 fumadocs-ui/style.css 排在应用样式之前，
+   导致 Navbar 元素上的 .md\:hidden（fumadocs 包内规则）被应用层的 .flex 同优先级覆盖，
+   移动端导航栏在桌面端关不掉——0 高度容器里的子元素垂直居中外溢，
+   页面顶部出现被裁切一半的重复标题。
+   此处按该工具类自身的语义强制恢复（放最后加载 + !important，确保赢下层叠）。 */
+@media (min-width: 48rem) {
+  .md\:hidden {
+    display: none !important;
+  }
+}
+
 @theme {
   /* 字体：Inter 正文 / Source Serif 4 标题 / Geist Mono 代码 */
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system,
